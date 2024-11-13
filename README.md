@@ -180,6 +180,13 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - **So, copy the Public IP of the Jenkins-Master and take it to a Browser to open it with port 8080**
   - **172.31.0.62:8080**
 - Now, unlock Jenkins. so
+      - Copy the path in red and take it to the Master Node to generate the needed password. so
+      - While in the Master Node, do ***sudo cat <paste that path here>***
+      - Now, copy the password and take it to the Jenkins UI
+      - Paste the Password in the "Administrator Password" box
+      - Then click on ***Continue***
+      - Click on ***install suggested plugins***
+          **CREATE FIRST ADMIN USER**
 
 
 
