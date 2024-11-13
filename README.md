@@ -196,6 +196,26 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Click now on "Save and continue"
 - Then click on "Save and Finish"
 - Then click on "Start using Jenkins"
+- Now, go to "Manage Jenkins" and click on it
+- Now, click on "Nodes"
+- Click on "Build-in Node" in the middle. Click on the name itself
+  - Then locate on the left and click on "Configure"
+  - Number of Executors? **0**
+  - Then click on "Save"
+- Now, click on **Dashboard** and click again on "Manage Jenkins"
+  - Click again on "Nodes"
+  - Now, click on "New Nodes" at the top right
+  - Node name: Jenkins-Agent
+  - Check the box on "Permanent Agent"
+  - Click now on **Create**
+  - Number of Executors: 2
+  - Remote root directory: ***/home/ubuntu*** {this is the home Directory of the Agent Server}
+  - Labels: ***Jenkins-Agent***
+  - Usage: **Use this node as much as possible**
+  - Host: Post the private IP of the Jenkins-Agent here {Because both are in thesame VPC. If they were in different VPC, we can use External Ip}
+  - Credentials: **None**
+  - Click on "+Add"
+  - Then click on "Jenkins"
 
 
 
