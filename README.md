@@ -28,12 +28,13 @@ ubuntu@ip-172-31-0-62:~$
 - 
 - Now, first of all update the system. so do 
 ***sudo apt update***
-Then, proceed to upgrade the system. so do ***sudoapt upgrade***
+- Then, proceed to upgrade the system. so do ***sudoapt upgrade***
 - Now, open and rename the Hostname here. so do ***vi /etc/hostname***
 - erase everything in there and type this ***Jenkins-Master***
 - Now, save and quite. so do ***:wq!***
 - Now, reboot the system. so do ***sudo init 6***
-  Now, go to the console and open the Firewall Rule.
+  
+- Now, go to the console and open the Firewall Rule.
 - So, go to "Security Group"
 - click on "create a Security Group"
 - Click on "Edit inbound rules"
@@ -43,7 +44,9 @@ Then, proceed to upgrade the system. so do ***sudoapt upgrade***
 
 - Proceed to install Java on this Jenkins VM. Use this command to install java. so do ***sudo apt install openjdk-17-jre***
 - Now, check to confirm that Java is succesfully installed. so do ***java -version***
-  It should show you the version of openjdk thats running in the system
+  
+- It should show you the version of openjdk thats running in the system
+  
 - Now, proceed to install Jenkins. You can go to the Jenkins Documentation page for Ubuntu/Debian and copy the code under "Weekly release"
 ***sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian/jenkins.io-2023.key
@@ -52,10 +55,13 @@ echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins***
-- now, Enable the Jenkins service to start at boot. so do ***sudo systemctl enable jenkins***
-- Then, Start Jenkins as a service. so do ***sudo systemctl start jenkins***
-- Now, Check the status of jenkins to ensure that its running and Active. so do ***systemctl status jenkins***
-- It should show "Active (running)"
+- now, Enable the Jenkins service to start at boot.
+- so do ***sudo systemctl enable jenkins***
+- Then, Start Jenkins as a service.
+- so do ***sudo systemctl start jenkins***
+- Now, Check the status of jenkins to ensure that its running and Active.
+- so do ***systemctl status jenkins***
+  It should show "Active (running)"
   At this point, JENKINS IS RUNNING IN THIS SERVER
 
 
