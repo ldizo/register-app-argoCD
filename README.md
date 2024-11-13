@@ -42,8 +42,10 @@ ubuntu@ip-172-31-0-62:~$
 - Type: ***Custom***, TCP Protocol: ***TCP***, Port range: ***8080***, Source: ***Anywhere ipv4***
 - Then click on "create" to create the Firewall Rule
 
-- Proceed to install Java on this Jenkins VM. Use this command to install java. so do ***sudo apt install openjdk-17-jre***
-- Now, check to confirm that Java is succesfully installed. so do ***java -version***
+- Proceed to install Java on this Jenkins VM. Use this command to install java.
+- so do ***sudo apt install openjdk-17-jre***
+- Now, check to confirm that Java is succesfully installed.
+- so do ***java -version***
   
 - It should show you the version of openjdk thats running in the system
   
