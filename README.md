@@ -312,6 +312,13 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
     - Check the box on "Lightweight checkout"
     - Click now on "Apply" and then you click on "Save"
     - Now go up and click on **Build now**  (No build trigger yet for now)
+-
+(4) Install and Configure Sonarqube
+-
+- So, go to the console and create a Sonarqube VM Instance. So click on "Launch Instance"
+  - Name: **Sonarqube**
+  - OS: **Ubuntu**
+  - 
 
 
 
