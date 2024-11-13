@@ -11,28 +11,32 @@ We shall use the Jenkins Master-Client Architecture, so that the main Jenkins se
   (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
-- Name: Jenkins-master
-- OS image: Ubuntu
-- Amazon Machine Image (AMI): Ubuntu server 22.04 LTS
-- Architecture: 64-bit(x86)
+- Name: **Jenkins-master**
+- OS image: **Ubuntu**
+- Amazon Machine Image (AMI): **Ubuntu server 22.04 LTS**
+- Architecture: **64-bit(x86)**
 - Keypair
   . click on "create new keypair"
-  . Keypair name: Jenkins-vm-keypair
+  . Keypair name: **Jenkins-vm-keypair**
   . click on "create" to create the Keypair
-- Configure storage (Hard Disk): 15 GB
+- Configure storage (Hard Disk): **15 GB**
 - Now, click on "Launch Instance" to create the instance
 - Now, copy the Public Ip of this Jenkins-Master Vm and ssh into it from your local system
 - You should have it as:
 - 
 ubuntu@ip-172-31-0-62:~$
 - 
-- Now, first of all update the system. so do 
-***sudo apt update***
-- Then, proceed to upgrade the system. so do ***sudoapt upgrade***
-- Now, open and rename the Hostname here. so do ***vi /etc/hostname***
+- Now, first of all update the system.
+- so do, ***sudo apt update***
+- Then, proceed to upgrade the system.
+- so do, ***sudoapt upgrade***
+- Now, open and rename the Hostname here.
+- so do, ***vi /etc/hostname***
 - erase everything in there and type this ***Jenkins-Master***
-- Now, save and quite. so do ***:wq!***
-- Now, reboot the system. so do ***sudo init 6***
+- Now, save and quite.
+- so do, ***:wq!***
+- Now, reboot the system.
+- so do, ***sudo init 6***
   
 - Now, go to the console and open the Firewall Rule.
 - So, go to "Security Group"
@@ -43,27 +47,30 @@ ubuntu@ip-172-31-0-62:~$
 - Then click on "create" to create the Firewall Rule
 
 - Proceed to install Java on this Jenkins VM. Use this command to install java.
-- so do ***sudo apt install openjdk-17-jre***
+- so do, ***sudo apt install openjdk-17-jre***
 - Now, check to confirm that Java is succesfully installed.
-- so do ***java -version***
+- so do, ***java -version***
   
 - It should show you the version of openjdk thats running in the system
   
 - Now, proceed to install Jenkins. You can go to the Jenkins Documentation page for Ubuntu/Debian and copy the code under "Weekly release"
-***sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+- So do
+  
+- So do, ***sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian/jenkins.io-2023.key
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins***
+
 - now, Enable the Jenkins service to start at boot.
-- so do ***sudo systemctl enable jenkins***
+- so do, ***sudo systemctl enable jenkins***
 - Then, Start Jenkins as a service.
-- so do ***sudo systemctl start jenkins***
+- so do, ***sudo systemctl start jenkins***
 - Now, Check the status of jenkins to ensure that its running and Active.
-- so do ***systemctl status jenkins***
+- so do, ***systemctl status jenkins***
   It should show "Active (running)"
-  At this point, JENKINS IS RUNNING IN THIS SERVER
+  At this point, JENKINS IS RUNNING IN THIS SERVER.
 
 
