@@ -6,7 +6,7 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 
 ![Screenshot 2024-11-12 at 9 35 34 PM](https://github.com/user-attachments/assets/5b413388-42ba-419a-9f86-603777520b95)
 
-                                           # Implementation
+                                           -- Implementation --
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
   (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server
 Create a Jenkins Master Server in the Console. so
@@ -26,16 +26,17 @@ Create a Jenkins Master Server in the Console. so
 - 
 ubuntu@ip-172-31-0-62:~$
 - 
-###Now, first of all update the system###.
+- Now, first of all update the system.
 ***sudo apt update***
-# Then, proceed to upgrade the system.
+- Then, proceed to upgrade the system.
 ***sudoapt upgrade***
-# Open and rename the Hostname here.
+- Open and rename the Hostname here.
 ***vi /etc/hostname***
-# Erase everything in there and type this ***Jenkins-Master***
-# Now, save and quite.
+- Now, Erase everything in there and type this
+***Jenkins-Master***
+- Now, save and quite.
 ***:wq!***
-# Now, reboot the system.
+- Now, reboot the system.
 ***sudo init 6***
   
 - Now, go to the console and open the Firewall Rule.
@@ -47,16 +48,14 @@ ubuntu@ip-172-31-0-62:~$
 - Then click on "create" to create the Firewall Rule
 
 - Proceed to install Java on this Jenkins VM. Use this command to install java.
-- so do, ***sudo apt install openjdk-17-jre***
+***sudo apt install openjdk-17-jre***
 - Now, check to confirm that Java is succesfully installed.
-- so do, ***java -version***
+***java -version***
   
 - It should show you the version of openjdk thats running in the system
   
 - Now, proceed to install Jenkins. You can go to the Jenkins Documentation page for Ubuntu/Debian and copy the code under "Weekly release"
-- So do
-  
-- So do, ***sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  ***sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian/jenkins.io-2023.key
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
@@ -65,12 +64,12 @@ sudo apt-get update
 sudo apt-get install jenkins***
 
 - now, Enable the Jenkins service to start at boot.
-- so do, ***sudo systemctl enable jenkins***
+***sudo systemctl enable jenkins***
 - Then, Start Jenkins as a service.
-- so do, ***sudo systemctl start jenkins***
+***sudo systemctl start jenkins***
 - Now, Check the status of jenkins to ensure that its running and Active.
-- so do, ***systemctl status jenkins***
+***systemctl status jenkins***
   It should show "Active (running)"
-  At this point, JENKINS IS RUNNING IN THIS SERVER.
+- At this point, JENKINS IS RUNNING IN THIS SERVER.
 
 
