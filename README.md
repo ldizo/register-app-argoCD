@@ -72,4 +72,36 @@ sudo apt-get install jenkins***
   It should show "Active (running)"
 - At this point, JENKINS IS RUNNING IN THIS SERVER.
 
+Our objective is to use the Jenkins Master-Client Architecture, so that we dont overload the Master Server. So whatever command that we pass in the Master will get executed in the Client Server. So, we now proceed to create a Client Sevrer. so go back to the console and create a client server.so
+- Click again on "Launch Instance"
+- Name: ***Jenkins-Agent***
+- OS: ***Ubuntu***
+- Amazon Machine Image (AMI): ***Ubuntu server 22.04 LTS***
+- Architecture: ***64-bit(x86)***
+- Keypair: select our keypair: **Jenkins-vm-keypair**
+- Configure Storage: Hard Disk): ***15 GB***
+- Then click on "Launch Instance" to create the Jenkins Agent VM
+- Now, copy the public IP of the Agent VM and use it to ssh into it from your local. it should appear as follow
+  ubuntu@ip-172-31-6-16:~$
+- Now, first of all update the system.
+***sudo apt update***
+- Then, proceed to upgrade the system.
+***sudoapt upgrade***
+- Open and rename the Hostname here.
+***vi /etc/hostname***
+- Now, Erase everything in there and type this
+***Jenkins-Agent***
+- Now, save and quite.
+***:wq!***
+- Now, reboot the system.
+***sudo init 6***
+- it should now appear as follows
+   ubuntu@Jenkins-Agent:~$
+
+- Also install Java in the Agent. so run this command
+***sudo apt install openjdk-17-jre***
+- Now, check to confirm that Java is succesfully installed.
+***java -version***
+  
+- It should show you the version of openjdk thats running in the system
 
