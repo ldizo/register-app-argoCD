@@ -188,6 +188,14 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
   - Click on ***install suggested plugins***
     
 - **CREATE FIRST ADMIN USER**
+  - Usernamae: ***Clouduser***
+  - password: ***admin***
+  - confirm password: ***admin***
+  - Full name: ***Kenneth***
+  - Email address:
+- Click now on "Save and continue"
+- Then click on "Save and Finish"
+- Then click on "Start using Jenkins"
 
 
 
