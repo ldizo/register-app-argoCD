@@ -243,7 +243,7 @@ Now the Jenkins-Agent has just been added to our Jenkins-Master
 - "**Running on Jenkins-Agent in /home/ubuntu/workspace/Test**"
 - You can now delete the **Test** job (so as not to confuse us)
 - 
-(3) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins
+(3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins
 -
 We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. So
 - Go to "**Manage Jenkins**"
@@ -269,6 +269,14 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
    - Click on "**Add JDK**"
    - Name: "**Java17**" {Note; This name will be recalled in the Pipeline script}
    - Click and check the box on "**Install automatically**"
+   - Then click on "**Add installer**"
+   - Then select: "**Install from adoptium.net**"
+   - Version: "**jdk-17.0.5+8**" {This version, we shall use for jdk}
+   - Then click on "Apply" and then click on "Save"
+-
+(3.1) Proceed to add our Github Credentials to Jenkins
+-
+- So, go to the Jenkins DASHBOARD and click again on "**Manage Jenkins**"
 
 
 
