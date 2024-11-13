@@ -22,8 +22,10 @@ Create a Jenkins Master Server in the Console. so
 - Configure storage (Hard Disk): 15 GB
 - Now, click on "Launch Instance" to create the instance
 - Now, copy the Public Ip of this Jenkins-Master Vm and ssh into it from your local system
-- You should have it as
+- You should have it as:
+- 
 ubuntu@ip-172-31-0-62:~$
+- 
 
 
 
