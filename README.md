@@ -178,7 +178,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 (2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node
 
 - **So, copy the Public IP of the Jenkins-Master and take it to a Browser to open it with port 8080**
-  **172.31.0.62:8080**
+  - **172.31.0.62:8080**
 - Now, unlock Jenkins. so
 
 
