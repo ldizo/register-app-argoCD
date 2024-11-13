@@ -128,7 +128,29 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 
 - Now, navigate to the Jenkins-Master server, which is **Ubuntu@Jenkins-Master:~$**
 - Proceed to open the configuration file of this Master server. So do
-***sudo vi /etc/ssh/sshd_config
+***sudo vi /etc/ssh/sshd_config***
+- In here, also scroll down to locate and uncomment "Public Key Authentication" to turn it to "yes". So uncomment it to appear as follows;
+***pubKeyAuthentication yes***
+- Then continue to scroll down again to locate and uncomment "AuthorizedKeysFile" to appear as follows
+***AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2***
+- Now, save and quite.
+***:wq!***
+- At this point, while still inside the Jenkins-Master, reload the ssh service. So do
+***sudo service sshd reload***
+- At this point, also go to the Jenkins-Agent and reload the ssh service as well. So in the Agent, also do
+***sudo service sshd reload***
+- Now, go to the Jenkins-Master server and generate the ssh key. So in the Master Server, do
+***ssh-keygen***
+- It says "Enter File in which to save the key (/home/ubuntu/.ssh/id_rsa):
+***press ENTER on your keyboard***
+- It further says "Enter passphrase (empty for no passphrase):
+******press ENTER on your keyboard again***
+- It also says "Enter same passphrase again"
+******press ENTER again on your keyboard***
+- The key has been generated
+- Now do ***pwd*** to ensure that you are inside /home/ubuntu
+- Now, go into .ssh directory. so do
+- ***cd .ssh/***
 
 
 
