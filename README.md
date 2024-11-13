@@ -245,6 +245,30 @@ Now the Jenkins-Agent has just been added to our Jenkins-Master
 - 
 (3) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins
 -
+We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. So
+- Go to "**Manage Jenkins**"
+- Then locate and click on **Plugins**
+- Then click on **Available plugins** in the left
+- On the search bar, type and search for "**Maven**"
+  - Check the box on "**Maven Integration**"
+  - Check also the box on "**Pipeline Maven Integration**"
+- Now, type and search again for "**Eclipse Temurin Installer**"
+  - Check the box on "**Eclipse Temurin Installer**"
+- Then you proceed to click on ***Install*** at the top right.
+
+- Now, we need to configure these Plugins. So go to the DASHBOARD again and click on "**Manage Jenkins**"
+- Then click on ***Tools***
+  - Scroll down to locate "**Maven Installations**"
+  - Then click on "**Add Maven**"
+  - Name: ***Maven3***  {Note that, this name will be recalled in the Pipeline}
+  - Check this box on "**Installed automatically**"
+  - Then click on "Apply and click on "Save"
+
+- Click again on ***Tools***
+   - Scroll down to locate "**JDK Installations**"
+   - Click on "**Add JDK**"
+   - Name: "**Java17**" {Note; This name will be recalled in the Pipeline script}
+   - Click and check the box on "**Install automatically**"
 
 
 
