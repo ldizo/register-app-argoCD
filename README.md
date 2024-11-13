@@ -144,13 +144,19 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - It says "Enter File in which to save the key (/home/ubuntu/.ssh/id_rsa):
 ***press ENTER on your keyboard***
 - It further says "Enter passphrase (empty for no passphrase):
-******press ENTER on your keyboard again***
+***press ENTER on your keyboard again***
 - It also says "Enter same passphrase again"
-******press ENTER again on your keyboard***
+***press ENTER again on your keyboard***
 - The key has been generated
 - Now do ***pwd*** to ensure that you are inside /home/ubuntu
 - Now, go into .ssh directory. so do
-- ***cd .ssh/***
+***cd .ssh/***
+- Inside this .ssh directory, do **ls**
+- You will see "authorized_keys"
+- You will also see both your private key **id_rsa** and the public key **id_rsa.pub**
+- Now, open the public key. So do
+***cat id_rsa.pub***
+- Now, copy the complete key from **ssh** all the way to the end **-master**
 
 
 
