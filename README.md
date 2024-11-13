@@ -13,15 +13,15 @@ We shall use the Jenkins Master-Client Architecture, so that the main Jenkins se
   
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
-- Name: **Jenkins-master**
-- OS image: **Ubuntu**
-- Amazon Machine Image (AMI): **Ubuntu server 22.04 LTS**
-- Architecture: **64-bit(x86)**
-- Keypair
-  . click on "create new keypair"
-  . Keypair name: **Jenkins-vm-keypair**
-  . click on "create" to create the Keypair
-- Configure storage (Hard Disk): **15 GB**
+  - Name: **Jenkins-master**
+  - OS image: **Ubuntu**
+  - Amazon Machine Image (AMI): **Ubuntu server 22.04 LTS**
+  - Architecture: **64-bit(x86)**
+  - Keypair
+    - click on "create new keypair"
+    - Keypair name: **Jenkins-vm-keypair**
+    - click on "create" to create the Keypair
+    - Configure storage (Hard Disk): **15 GB**
 - Now, click on "Launch Instance" to create the instance
 - Now, copy the Public Ip of this Jenkins-Master Vm and ssh into it from your local system
 - You should have it as:
@@ -76,12 +76,12 @@ sudo apt-get install jenkins***
 
 Our objective is to use the Jenkins Master-Client Architecture, so that we dont overload the Master Server. So whatever command that we pass in the Master will get executed in the Client Server. So, we now proceed to create a Client Sevrer. so go back to the console and create a client server.so
 - Click again on "Launch Instance"
-- Name: ***Jenkins-Agent***
-- OS: ***Ubuntu***
-- Amazon Machine Image (AMI): ***Ubuntu server 22.04 LTS***
-- Architecture: ***64-bit(x86)***
-- Keypair: select our keypair: **Jenkins-vm-keypair**
-- Configure Storage: Hard Disk): ***15 GB***
+   - Name: ***Jenkins-Agent***
+   - OS: ***Ubuntu***
+   - Amazon Machine Image (AMI): ***Ubuntu server 22.04 LTS***
+   - Architecture: ***64-bit(x86)***
+   - Keypair: select our keypair: **Jenkins-vm-keypair**
+   - Configure Storage: Hard Disk): ***15 GB***
 - Then click on "Launch Instance" to create the Jenkins Agent VM
 - Now, copy the public IP of the Agent VM and use it to ssh into it from your local. it should appear as follows
 - 
