@@ -186,7 +186,8 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
   - Paste the Password in the "Administrator Password" box
   - Then click on ***Continue***
   - Click on ***install suggested plugins***
-          - **CREATE FIRST ADMIN USER**
+    
+- **CREATE FIRST ADMIN USER**
 
 
 
