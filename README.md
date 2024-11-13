@@ -224,12 +224,23 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
   - Click now on "Add"
   - Enter the New Secret Below
   - Key
-    - Now, go to the Jenkins-Master (i.e ubuntu@Jenkins-Master:~) and do ***/.ssh*** to populate the Private Key to copy it. Copy the Private Key of this Jenkins-Master from ***---BEGIN OPENSSH PRIVATE KEY right up to ***---END OPENSSH PRIVATE KEY---***
+    - Now, go to the Jenkins-Master (i.e ubuntu@Jenkins-Master:~) and do ***/.ssh*** to populate the Private Key to copy it. Copy the Private Key of this Jenkins-Master from ***---BEGIN OPENSSH PRIVATE KEY*** right up to ***---END OPENSSH PRIVATE KEY---***
     - Paste the Private Key here
   - Credentials: Select ***Ubuntu(Jenkins-Agent)*** {which we have just created}
   - Host Key Verification Strategy: ***Non verifying verification Strategy***
   - Now, click on ***Save***
 Now the Jenkins-Agent has just been added to our Jenkins-Master
+
+- Now go to the Dashboard and click on "***New item**"
+- Enter an item name: **Test**
+- Then click on **"Pipeline"**
+- Then click on **"OK"**
+- Scroll down to locate **"Pipeline"**
+- Script: on the box at the right, select ***"Hello world"** {so as to start building the script}
+- Click now on ***Apply*** and click on ***Save***
+- Click now on "Build Now"
+- Now, the Build has been completed succesfully as a test in the Agent. Which means that our connection between the Jenkins-Master and Jenkins-Agent is succesfull. As you can see here saying
+- "**Running on Jenkins-Agent in /home/ubuntu/workspace/Test**"
 
 
 
