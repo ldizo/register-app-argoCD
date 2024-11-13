@@ -81,8 +81,10 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Keypair: select our keypair: **Jenkins-vm-keypair**
 - Configure Storage: Hard Disk): ***15 GB***
 - Then click on "Launch Instance" to create the Jenkins Agent VM
-- Now, copy the public IP of the Agent VM and use it to ssh into it from your local. it should appear as follow
+- Now, copy the public IP of the Agent VM and use it to ssh into it from your local. it should appear as follows
+- 
   ubuntu@ip-172-31-6-16:~$
+-
 - Now, first of all update the system.
 ***sudo apt update***
 - Then, proceed to upgrade the system.
@@ -96,8 +98,9 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Now, reboot the system.
 ***sudo init 6***
 - it should now appear as follows
+- 
    ubuntu@Jenkins-Agent:~$
-
+-
 - Also install Java in the Agent. so run this command
 ***sudo apt install openjdk-17-jre***
 - Now, check to confirm that Java is succesfully installed.
