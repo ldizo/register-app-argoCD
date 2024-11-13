@@ -241,6 +241,10 @@ Now the Jenkins-Agent has just been added to our Jenkins-Master
 - Click now on "Build Now"
 - Now, the Build has been completed succesfully as a test in the Agent. Which means that our connection between the Jenkins-Master and Jenkins-Agent is succesfull. As you can see here saying
 - "**Running on Jenkins-Agent in /home/ubuntu/workspace/Test**"
+- You can now delete the **Test** job (so as not to confuse us)
+- 
+(3) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins
+-
 
 
 
