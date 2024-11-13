@@ -26,17 +26,17 @@ Create a Jenkins Master Server in the Console. so
 - 
 ubuntu@ip-172-31-0-62:~$
 - 
-- Now, first of all update the system.
-- so do, ***sudo apt update***
-- Then, proceed to upgrade the system.
-- so do, ***sudoapt upgrade***
-- Now, open and rename the Hostname here.
-- so do, ***vi /etc/hostname***
-- erase everything in there and type this ***Jenkins-Master***
-- Now, save and quite.
-- so do, ***:wq!***
-- Now, reboot the system.
-- so do, ***sudo init 6***
+# Now, first of all update the system.
+***sudo apt update***
+# Then, proceed to upgrade the system.
+***sudoapt upgrade***
+# Open and rename the Hostname here.
+***vi /etc/hostname***
+# Erase everything in there and type this ***Jenkins-Master***
+# Now, save and quite.
+***:wq!***
+# Now, reboot the system.
+***sudo init 6***
   
 - Now, go to the console and open the Firewall Rule.
 - So, go to "Security Group"
