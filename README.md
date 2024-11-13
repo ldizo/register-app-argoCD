@@ -26,6 +26,7 @@ Create a Jenkins Master Server in the Console. so
 - 
 ubuntu@ip-172-31-0-62:~$
 - 
-
+# Now, first of all update the system. so do 
+**sudo apt udate**
 
 
