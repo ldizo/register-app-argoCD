@@ -112,3 +112,42 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 ***sudo apt-get install docker.io***
 -Do you want to continue? **y**
 
+- Now, give full rights or permissions to the current User inside the Jenkins-Agent on Docker. Use this command
+***sudo usermod -aG docker $USER***
+- Now, reboot the system. So do
+***sudo init 6***
+- Still in the Jenkins-Agent, we shall connect the Jenkins-Agent to the Jenkins-Master fot them to be connected together.
+- So, still in the Jenkins-Agent, open the ssh configuration File.
+***sudo vi /etc/ssh/sshd_config***
+- inside the configuration File, scroll down to locate and uncomment "Public Key Authentication" to turn it to "yes". So uncomment it to appear as follows;
+***pubKeyAuthentication yes***
+- Then continue to scroll down again to locate and uncomment "AuthorizedKeysFile" to appear as follows
+***AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2***
+- Now, save and quite.
+***:wq!***
+
+- Now, navigate to the Jenkins-Master server, which is **Ubuntu@Jenkins-Master:~$**
+- Proceed to open the configuration file of this Master server. So do
+***sudo vi /etc/ssh/sshd_config
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
