@@ -292,6 +292,26 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
   - ID: **github** {We shall recall this github ID in the Pipeline Script
   - Description: **github**
   - Now, click on "**Create**"
+-
+- Link your Github Application Source Code Repository to Jenkins.
+-
+- So, In the Jenkins DASHBOARD, CLICK ON "**New Item**"
+  - Name: **register-app-ci**
+  - Then click on **Pipeline**
+  - Now, click on **OK**
+  - Under **General**;
+  - Check the box on "**Discard old builds**"
+  - Max number of build to keep: **3**
+  - Pipeline Script: Select: **Pipeline Script from SCM**
+  - SCM: **Git**
+  - Repositories
+    - Repository URL: **https://github.com/Ashfaque-9x/register-app** {replace this with your Application Source code Repo git repo URL}
+    - Credentials: "Select your github credentials" **Ashfaque-9x/***(github)**
+    - Branch Specifier: "****/main***"
+    - Script path: **Jenkinsfile**
+    - Check the box on "Lightweight checkout"
+    - Click now on "Apply" and then you click on "Save"
+    - Now go up and click on **Build now**  (No build trigger yet for now)
 
 
 
