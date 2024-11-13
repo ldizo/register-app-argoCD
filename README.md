@@ -216,6 +216,20 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
   - Credentials: **None**
   - Click on "+Add"
   - Then click on "Jenkins"
+  - Kind: **SSH Username with private key**
+  - ID: **Jenkins-Agent**
+  - Username: **Ubuntu**
+  - Private Key
+     - check the box on "Enter directly"
+  - Click now on "Add"
+  - Enter the New Secret Below
+  - Key
+    - Now, go to the Jenkins-Master (i.e ubuntu@Jenkins-Master:~) and do ***/.ssh*** to populate the Private Key to copy it. Copy the Private Key of this Jenkins-Master from ***---BEGIN OPENSSH PRIVATE KEY right up to ***---END OPENSSH PRIVATE KEY---***
+    - Paste the Private Key here
+  - Credentials: Select ***Ubuntu(Jenkins-Agent)*** {which we have just created}
+  - Host Key Verification Strategy: ***Non verifying verification Strategy***
+  - Now, click on ***Save***
+Now the Jenkins-Agent has just been added to our Jenkins-Master
 
 
 
