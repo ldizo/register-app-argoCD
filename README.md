@@ -274,9 +274,24 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
    - Version: "**jdk-17.0.5+8**" {This version, we shall use for jdk}
    - Then click on "Apply" and then click on "Save"
 -
-(3.1) Proceed to add our Github Credentials to Jenkins
+(3.1) Proceed to add our Github Credentials to Jenkins {Use this approach if your GitHub Account is private}
 -
 - So, go to the Jenkins DASHBOARD and click again on "**Manage Jenkins**"
+- Now, locate "SECURITY" and click on "**Credentials**"
+- Under "Stores Scoped to Jenkins", locate "Domains" and click below it on "**global**"
+- Then click on "**Add credentials**"
+  - Username: **Klekeanyi** {Pass the username of your GitHub Account here}
+  - Password: ....... {Paste here your Personal Access Token of your GitHub Account here}
+    - To generate or create this Personal Access Token;
+    - Go to your GitHub Account and click on your picture icon or name at the far top right
+    - click now on "**Settings**" at the bottom of the populated page
+    - At the left, scroll down and click on "**Developer settings**"
+    - Then click on "**Personal Access Tokens**"
+    - Then click on "**Tokens (classic)**"
+    - Now click at the top right on "**Generate new token**" to generate the token
+  - ID: **github** {We shall recall this github ID in the Pipeline Script
+  - Description: **github**
+  - Now, click on "**Create**"
 
 
 
