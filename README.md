@@ -8,9 +8,9 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 
                                            -- Implementation --
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
-
+-
   (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server
-  
+ - 
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
   - Name: **Jenkins-master**
@@ -174,9 +174,9 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Now, cat the authorized_key file to see those 2 public keys aligned there. So do
 ***cat authorized_keys***
 - you will see a "READONLY" public key content of the Agent first above it, then you see the public key content of the Master second directly below it
-
+-
 (2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node
-
+-
 - **So, copy the Public IP of the Jenkins-Master and take it to a Browser to open it with port 8080**
   - **172.31.0.62:8080**
 - Now, unlock Jenkins. so
