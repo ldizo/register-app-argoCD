@@ -107,4 +107,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 ***java -version***
   
 - It should show you the version of openjdk thats running in the system
+- Now, install DOCKER inside this Jenkins Agent Server. so do
+***sudo apt-get install docker.io***
+-Do you want to continue? **y**
 
