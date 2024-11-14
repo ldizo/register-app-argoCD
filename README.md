@@ -8,9 +8,9 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 
                                            -- Implementation --
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
--
-  (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server
- - 
+
+  **(1) Install and configure the Jenkins-Master server and the Jenkins-Agent server**
+ 
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
   - Name: **Jenkins-master**
@@ -25,9 +25,9 @@ Create a Jenkins Master Server in the Console. so
 - Now, click on "Launch Instance" to create the instance
 - Now, copy the Public Ip of this Jenkins-Master Vm and ssh into it from your local system
 - You should have it as:
-- 
-ubuntu@ip-172-31-0-62:~$
-- 
+  
+- **ubuntu@ip-172-31-0-62:~$**
+  
 - Now, first of all update the system.
 ***sudo apt update***
 - Then, proceed to upgrade the system.
@@ -84,9 +84,9 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
    - Configure Storage: Hard Disk): ***15 GB***
 - Then click on "Launch Instance" to create the Jenkins Agent VM
 - Now, copy the public IP of the Agent VM and use it to ssh into it from your local. it should appear as follows
-- 
-  ubuntu@ip-172-31-6-16:~$
--
+  
+- **ubuntu@ip-172-31-6-16:~$**
+
 - Now, first of all update the system.
 ***sudo apt update***
 - Then, proceed to upgrade the system.
@@ -100,9 +100,9 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Now, reboot the system.
 ***sudo init 6***
 - it should now appear as follows
-- 
-   ubuntu@Jenkins-Agent:~$
--
+  
+- **ubuntu@Jenkins-Agent:~$**
+
 - Also install Java in the Agent. so run this command
 ***sudo apt install openjdk-17-jre***
 - Now, check to confirm that Java is succesfully installed.
@@ -174,9 +174,9 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Now, cat the authorized_key file to see those 2 public keys aligned there. So do
 ***cat authorized_keys***
 - you will see a "READONLY" public key content of the Agent first above it, then you see the public key content of the Master second directly below it
--
-(2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node
--
+
+**(2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node**
+
 - **So, copy the Public IP of the Jenkins-Master and take it to a Browser to open it with port 8080**
   - **172.31.0.62:8080**
 - Now, unlock Jenkins. so
@@ -242,9 +242,9 @@ Now the Jenkins-Agent has just been added to our Jenkins-Master
 - Now, the Build has been completed succesfully as a test in the Agent. Which means that our connection between the Jenkins-Master and Jenkins-Agent is succesfull. As you can see here saying
 - "**Running on Jenkins-Agent in /home/ubuntu/workspace/Test**"
 - You can now delete the **Test** job (so as not to confuse us)
-- 
-(3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins
--
+  
+**(3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins**
+
 We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. So
 - Go to "**Manage Jenkins**"
 - Then locate and click on **Plugins**
@@ -273,9 +273,9 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
    - Then select: "**Install from adoptium.net**"
    - Version: "**jdk-17.0.5+8**" {This version, we shall use for jdk}
    - Then click on "Apply" and then click on "Save"
--
+
 (3.1) Proceed to add our Github Credentials to Jenkins {Use this approach if your GitHub Account is private}
--
+
 - So, go to the Jenkins DASHBOARD and click again on "**Manage Jenkins**"
 - Now, locate "SECURITY" and click on "**Credentials**"
 - Under "Stores Scoped to Jenkins", locate "Domains" and click below it on "**global**"
@@ -292,9 +292,9 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
   - ID: **github** {We shall recall this github ID in the Pipeline Script
   - Description: **github**
   - Now, click on "**Create**"
--
-- Link your Github Application Source Code Repository to Jenkins.
--
+
+- **Link your Github Application Source Code Repository to Jenkins.**
+
 - So, In the Jenkins DASHBOARD, CLICK ON "**New Item**"
   - Name: **register-app-ci**
   - Then click on **Pipeline**
@@ -312,13 +312,28 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
     - Check the box on "Lightweight checkout"
     - Click now on "Apply" and then you click on "Save"
     - Now go up and click on **Build now**  (No build trigger yet for now)
--
+
 (4) Install and Configure Sonarqube
--
+
 - So, go to the console and create a Sonarqube VM Instance. So click on "Launch Instance"
   - Name: **Sonarqube**
   - OS: **Ubuntu**
-  - 
+  - Architecture: **64-bit(x86)**
+  - Instance type: **t3. medium** {t2.micro is insuffient for Sonarqube, because we shall be installing postgresql and Sonarqube in this Vm}
+  - Keypair: Select our **Jenkins-vm-keypair**
+  - Configure Storage (Disk): **15 GB**
+  - Now, click on "Launch Instance"
+- Open the Firewall or Security Group of this SonarQube. Note that SonarQube runs on port **9000**. so
+  - On this newly created Sonarqube instance, click beside it to check it box.
+  - Then click on "Security" to go to "Security Group"
+  - Click now on "Edit inbound rules"
+  - Click on "Add rule"
+  - Type: **Custom TCP**, Protocol: **TCP**, Port range: **9000**, Source: **Anywhere ipv4**.
+  - Then click on "Save rule".
+- Now ssh into this VM using it External IP. so you will have something like this
+  
+- **Ubuntu@ip-172-31-15-204:~$**
+- 
 
 
 
