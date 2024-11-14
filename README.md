@@ -85,7 +85,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 - Then click on "Launch Instance" to create the Jenkins Agent VM
 - Now, copy the public IP of the Agent VM and use it to ssh into it from your local. it should appear as follows
   
-- **ubuntu@ip-172-31-6-16:~$**
+  **ubuntu@ip-172-31-6-16:~$**
 
 - Now, first of all update the system.
 ***sudo apt update***
@@ -101,7 +101,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 ***sudo init 6***
 - it should now appear as follows
   
-- **ubuntu@Jenkins-Agent:~$**
+  **ubuntu@Jenkins-Agent:~$**
 
 - Also install Java in the Agent. so run this command
 ***sudo apt install openjdk-17-jre***
@@ -187,7 +187,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
   - Then click on ***Continue***
   - Click on ***install suggested plugins***
     
-- **CREATE FIRST ADMIN USER**
+  **CREATE FIRST ADMIN USER**
   - Usernamae: ***Clouduser***
   - password: ***admin***
   - confirm password: ***admin***
@@ -293,7 +293,7 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
   - Description: **github**
   - Now, click on "**Create**"
 
-- **Link your Github Application Source Code Repository to Jenkins.**
+  **Link your Github Application Source Code Repository to Jenkins.**
 
 - So, In the Jenkins DASHBOARD, CLICK ON "**New Item**"
   - Name: **register-app-ci**
@@ -313,7 +313,7 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
     - Click now on "Apply" and then you click on "Save"
     - Now go up and click on **Build now**  (No build trigger yet for now)
 
-(4) Install and Configure Sonarqube
+**(4) Install and Configure Sonarqube**
 
 - So, go to the console and create a Sonarqube VM Instance. So click on "Launch Instance"
   - Name: **Sonarqube**
@@ -332,8 +332,62 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
   - Then click on "Save rule".
 - Now ssh into this VM using it External IP. so you will have something like this
   
-- **Ubuntu@ip-172-31-15-204:~$**
-- 
+  **Ubuntu@ip-172-31-15-204:~$**
+
+- Now, update the package repository. So do
+  ***sudo apt update***
+- Also upgrade the system. So do
+  ***sudo apt upgrade***
+- Now, add the Postgresql Repository by running this command
+  ***sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'***
+- Then run this command as well still adding postgresql.
+  ***wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null***
+- Now, install Postgresql. Use this command to do so.
+  ***sudo apt update*** to first update the system
+- Then proceed to install postgresql by running this command
+  ***sudo apt-get -y install postgresql postgresql-contrib***
+- As postgresql hass been installed, enable it. so do
+  ***sudo systemctl enable postgresql***
+- Now, create a password for SonarQube using this command.
+  ***sudo passwd postgres***
+  - New password: **sonar** {you have to remember this password}
+  - Retype new password: **sonar**
+- Now, run this command to change the user to "postgres"
+  ***su - postgres***
+  - Password: ***sonar***
+- Now, create a user for sonarQube. So do
+  ***createuser sonar***
+- Run this command as well. So do
+  ***psql***
+- As the User is now postgres, run this command to alter the user with an encrypted password
+  ***ALTER USER sonar WITH ENCRYPTED password 'sonar';***
+- Now, create a Database for SonarQube with this command
+  ***CREATE DATABASE sonarqube OWNER sonar;***
+- Then proceed to grant privileges to the Database. So do
+  ***grant all privileges on DATABASE sonarqube to sonar;***
+- Now, run this command
+  ***\q***
+- Then exit from the postgres user. so do
+  ***exit***
+  Now, the Database for SonarQube has been created succesfully. Now, proceed to add the Adoptium Repository. Start by doing
+  ***sudo bash***
+- Then run this command
+  ***wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc***
+- Now, run this long command
+  ***echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list***
+- Now proceed to install Java17 on this SonarQube VM. So do
+  ***apt update***
+- Install tumerin 17 with jdk. So do
+  ***apt install temurin-17-jdk***
+- Do you want to proceed? **y**
+- Now update it alternatives. So do
+  ***update-alternatives --config java***
+- Then run this command
+  ***/usr/bin/java --version***
+  You will see the version of Java "openjdk 17.0.8.1" which has been installed.
+- Now, exit. so do ***exit***
+
+  
 
 
 
