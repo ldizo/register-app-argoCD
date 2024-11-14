@@ -470,7 +470,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
     - Confirm Password ***adminadmin***
     - Click now on "Update"
   - It takes you to the SonarQube DASHBOARD
-  - {You will see it PASS or FAIL for the build on this DASHBOARD
+  - {You will see it "**PASSED**" or "**FAILED**" for the build on this DASHBOARD
     
     
 
