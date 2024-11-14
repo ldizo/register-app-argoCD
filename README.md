@@ -26,7 +26,7 @@ Create a Jenkins Master Server in the Console. so
 - Now, copy the Public Ip of this Jenkins-Master Vm and ssh into it from your local system
 - You should have it as:
   
-- **ubuntu@ip-172-31-0-62:~$**
+  **ubuntu@ip-172-31-0-62:~$**
   
 - Now, first of all update the system.
 ***sudo apt update***
