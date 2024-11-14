@@ -367,15 +367,17 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
   ***grant all privileges on DATABASE sonarqube to sonar;***
 - Now, run this command
   ***\q***
-- Then exit from the postgres user. so do
-  ***exit***
-  Now, the Database for SonarQube has been created succesfully. Now, proceed to add the Adoptium Repository. Start by doing
+- Then exit from the postgres user.
+- So do ***exit***
+  Now, the Database for SonarQube has been created succesfully.
+- So, proceed to add the Adoptium Repository. Start by doing
   ***sudo bash***
 - Then run this command
   ***wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc***
-- Now, run this long command
+- Now, run this long command too
   ***echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list***
-- Now proceed to install Java17 on this SonarQube VM. So do
+- Now proceed to install Java17 on this SonarQube VM.
+- But first of all update the system.
   ***apt update***
 - Install tumerin 17 with jdk. So do
   ***apt install temurin-17-jdk***
@@ -385,7 +387,93 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
 - Then run this command
   ***/usr/bin/java --version***
   You will see the version of Java "openjdk 17.0.8.1" which has been installed.
-- Now, exit. so do ***exit***
+- Now, exit.
+  ***exit***
+
+- Now, we need to do some Linux Kernel turning. But first of all, we will increase the limits. So run this command to increase the limit in the Conf file
+  ***sudo vi /etc/security/limits.conf***
+  - At the last end of the configuration file where you see **# End of File**, go to the next line and add this command
+    - ***sonarqube   -   nofile   65536***
+    - ***sonarqube   -   nproc    4096***
+  - Now, save and quit. So do ***:wq!***
+  - Proceed to increase the mapped memory regions. So open this file by doing
+    - ***sudo vim /etc/sysctl.conf***
+  - Now, go to the tail end of this config file and insert this without commenting it
+    - ***vm.max_map_count = 262144***
+  - Now, save and quit. So do ***:wq!***
+  - Now, reboot the system. So do
+    ***sudo init 6***
+
+Now, actually start the SonarQube installation proper. So first of all download the packages with this command
+   ***sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65466.zip***
+- Now, install the unzip in your system by doing
+  ***sudo apt install unzip***
+- Now, unzip SonarQube. So do
+  ***sudo unzip sonarqube-9.9.0.65466.zip -d /opt***
+- Now run this command
+  ***sudo mv /opt/sonarqube-9.9.0.65466 /opt/sonarqube***
+- Then you create a User group and set permissions for that User. But first of all run this command to add the group user. So do
+  ***sudo groupadd sonar***
+-Then also run  this command
+***sudo useradd -c "user to run SonarQube" -d /opt/sonarqube -g sonar sonar***
+- Now, change ownership by running this command. so do
+  ***sudo chown sonar:sonar /opt/sonarqube -R***
+- Then proceed to update SonarQube properties with the database credentials. So open this File by doing
+  ***sudo vi /opt/sonarqube/conf/sonar.properties***
+  - Inside this configuration File, locate and add these values to appear as follows
+    - ***sonar.jdbc.username=sonar***    {Note uncomment it}
+    - ***sonar.jdbc.password=sonar***    {Note uncomment it}
+  - Now, still inside this configuration file, locate the sonar jdbc postgresql url and change it to appear as follows
+    - ***sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonarqube***
+  - Now, save and quite. So do ***:wq!***
+- Now, proceed to create Service for SonarQube. Start by creating and vi into the sonar.service file. So do
+  ***sudo vim /etc/systemd/system/sonar.service***
+  - Then, paste this content inside that sonar.service file
+    ***[Unit]
+     Description=SonarQube service
+     After=syslog.target network.target
+
+     [Service]
+     Type=forking
+
+     ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+     ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
+
+     User=sonar
+     Group=sonar
+     Restart=always
+
+     LimitNOFILE=65536
+     LimitNPROC=4096
+
+     [Install]
+     WantedBy=multi-user.target***
+  -  Now, save and quite. So do ***:wq!***
+- At this point, start sonarQube and enable Service. So do
+  ***sudo systemctl start sonar***
+- Then you enable sonarqube by doing
+  ***sudo systemctl enable sonar***
+- Now, check the status to Sonar to enure that sonarqube.service is running. So do
+  ***sudo systemctl status sonar***
+  It should say "Active (running)
+  - So Sonarqube.Service is running in the system
+- We can now login and monitor the set up with this command
+  ***sudo tail -f /opt/sonarqube/logs/sonar.log***
+- now, copy the public IP of the SonarQube Server or VM Instance and take it to a Browser to access it on port 9000
+  - **13.233.77.86:9000***
+    - **Login to SonarQube***
+    - Login or Username: **admin**
+    - Password: ***admin***
+    - ***Update your Password**
+    - Old password: **admin**
+    - New password: **adminadmin*
+    - Confirm Password ***adminadmin***
+    - Click now on "Update"
+  - It takes you to the SonarQube DASHBOARD
+  - {You will see it PASS or FAIL for the build on this DASHBOARD
+    
+    
+
 
   
 
