@@ -4,10 +4,6 @@ Such that, when a Developer makes any changes to the Application source code and
 When everything is automated, the Continuous Deployment (CD) Job still defined in Jenkins as the 2nd Job get trigerred immediately. It will first of all update the the Build Number (the Release Number) in the Deployment Yaml File within the 2nd GitHub Repository that is hosting all the Kubernetes Manifest Files. From that 2nd GitHub Repository, ArgoCD which is installed in the K8s cluster will automaticall pull the changes noticed in that 2nd Repo and it will automatically deploy the resources inside the EKS Cluster. 
 And once that CD Job is completed, it will send a notification on Slack to the entire team or it can send an email to team members concerned.
 
-# Couple a MSQL Database to an Application using Manifest Files. Link
-https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
-
-
 ![Screenshot 2024-11-12 at 9 35 34 PM](https://github.com/user-attachments/assets/5b413388-42ba-419a-9f86-603777520b95)
 
                                            -- Implementation --
@@ -473,9 +469,61 @@ Now, actually start the SonarQube installation proper. So first of all download 
     - New password: **adminadmin*
     - Confirm Password ***adminadmin***
     - Click now on "Update"
+    - Immediately you click on "updates", it takes you directly to the SonarQube Dashboard
   - It takes you to the SonarQube DASHBOARD
   - {You will see it "**PASSED**" or "**FAILED**" for the build on this DASHBOARD
-    
+
+  # - SONARQUBE DASHBOARD -
+  ** Now, create a Sonarqube Webhook, to directly hookup Sonarqube with Jenkins in order to perform it Software Composition Analysis (Static Code Analysis) test before the Build
+  - So, on the SonarQube Dashboard, locate "**Aministrator**" at the top and click on it
+    - Then locate "**Configuration** and click on the drop down beside it to populate "Webhook" that you will click on it
+    - Click on "**Webhook**"
+    - Then click on "**Create**" at the top right to create a Webhook
+      - Name: **Sonarqube-webhook**
+      - URL: http://172.31.0.62:8080/sonarqube-webhook/     {The IP address used here is the Public IP of the Jenkins-Server}
+      - Secret:
+      - Now, click on "Create" to create this Webhook
+
+  **(5) Integrate SonarQube with Jenkins**
+
+  So, in the SonarQube Dashboard or UI
+  - Click on your Account icon or picture at the top right
+  - Then click on "Security" up at the top
+  - Under the "**Generate Tokesn**"
+    - Name of the Token: **jenkins-sonarqube-token**
+    - Type: **Global Analysis Token**
+    - Expires: **No expiration**
+    - Then, click on "**Generate**" to generate the token
+    - Now, copy the token to store it somewhere in your Local System, as we shall use this token to create its credentials under Jenkins
+
+  - Now, go or navigate to the Jenkins Dashboard and click on "Manage Jenkins"
+  - Then locate and click on "**Credentials**"
+  - Under "Stores Scoped to Jenkins" and under "Domain"
+    - click on (global)
+    - Then click on "Add credentials" in the middle
+      - Kind: **secret text**
+      - Secret: ***<paste that sonarqube token that you copied here>***
+      - ID: **Jenkins-sonarqube-token**
+    - Now, click on "Create"
+
+  # Install and Configure few plugins on Jenkins.
+  - So, go again to the Jenkins Dashboard and click on "Manage Jenkins"
+  - Locate and click on "Available plugins"
+  - In the search box, type and search for "**sonar**"
+    - Check the box on "**SonarQube Scannar**"
+    - Check also the box on "**SonarQube Gates**"
+    - Also check the box on "**Quality Gates**"
+  - Now, click on "install" at the top right
+  - Scroll down and click on "**Restart Jenkins**" to restart it.
+    - When installation is completed,
+     - Ignore the warning signs because we have created the sonarqube Database already which is postgresql
+
+  # Now, proceed to add this SonarQube Server to Jenkins.
+  - So, go to Jenkins and click again on "Manage Jenkins"
+  - Then click on "system"
+    - Scroll down to locate and click on "**Add sonarqube**" under "SonarQube Installations".
+    - Name: **sonarqube-server**
+    - Server URL: 
     
 
 
