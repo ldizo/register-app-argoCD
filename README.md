@@ -532,7 +532,41 @@ Now, actually start the SonarQube installation proper. So first of all download 
   - So, click again on "Manage Jenkins"
   - Then click on "Tools"
   - Scroll down to locate "**SonarQube Scannar Installations**"
-    - Under 
+    - Under it, click on "Add sonarqube scanner"
+    - Name: **sonarqube-scanner**
+    - Check this box on **Install automatically**
+    - Then click on "Apply" and then click on "Save"
+      
+# Now, Intall Docker related Plugins in the Jenkins Server
+- So, on the Jenkins Dashboard, locate and click again on "Manage Jenkins"
+- Then click on "Plugins"
+- Click on "Available plugins"
+  - In the Search box, type "Docker" and check these boxes
+  - Check the box on "**Docker 1.5**"
+  - Check the box on "**Docker Common**"
+  - Check the box on "**Docker Pipeline**"
+  - Check the box on "**Docker API**"
+  - Check the box on "**Docker-build-steps**"
+  - Check the box on "**CloudBees Docker Build and push**"
+  - Now, click on "Install" at the top
+  - Scroll down and restart Jenkins
+- Check this box on "Restart Jenkins when installation is complete and no jobs are running.
+
+# Now, add DockerHub Credentials in your Jenkins
+- So, go again to "Manage Jenkins"
+- Then click on "Credentials"
+- Under Stores Scoped to Jenkins", go directly under "Domains" and click on "**global**"
+- Click now on "**Add Credentials**"
+  - Kind: **username with password**
+  - Username: **ashfaque9x**  {paste your DockerHub username here}
+  - Password: **provide the Access token**
+    - To generate this Access Token of your DockerHub
+    - Go to your DockerHub Account and click on your "name icon" at the top right
+    - Then click on "Account Settings"
+    - Then click on "Security"
+    - Then click on "New Access Token"
+  - ID: **dockerhub**
+  - Then click on "Create"
     
 
 
