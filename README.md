@@ -523,7 +523,16 @@ Now, actually start the SonarQube installation proper. So first of all download 
   - Then click on "system"
     - Scroll down to locate and click on "**Add sonarqube**" under "SonarQube Installations".
     - Name: **sonarqube-server**
-    - Server URL: 
+    - Server URL: **http://172.31.15.204:9000**  {The Ip address used here is the Private IP of the SonarQube Server}
+    - Sever authentication token
+      - Select: **Jenkins-sonarqube-token**    {which we have created using the API token}
+      - Then click on "Apply" and click on "Save"
+
+  # Now, proceed to add SonarQube Scannar in Jenkins
+  - So, click again on "Manage Jenkins"
+  - Then click on "Tools"
+  - Scroll down to locate "**SonarQube Scannar Installations**"
+    - Under 
     
 
 
