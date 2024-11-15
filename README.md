@@ -572,17 +572,8 @@ Now, actually start the SonarQube installation proper. So first of all download 
 
 - Now, go to your Github Account and click to get into that Repository that is hosting the Application Source Code. (which is register-app)
   - =github.com/Ashfaque-9x/register-app=
--
-
-
-  
-
-
-
-
-
-
-
+- So, in this Repository, create a "**Jenkinsfile**" {Here is the content of the Jenkinsfile of this CI Jobe}
+          -----------------------------------------------------------------------------------------
 
 
 
