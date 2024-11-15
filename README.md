@@ -567,7 +567,12 @@ Now, actually start the SonarQube installation proper. So first of all download 
     - Then click on "New Access Token"
   - ID: **dockerhub**
   - Then click on "Create"
-    
+
+**(6) Create a Pipeline Script (Jenkinsfile) for Build $ Test Artifacts and Create CI Job on Jenkins**
+
+- Now, go to your Github Account and click to get into that Repository that is hosting the Application Source Code. (which is register-app)
+  - =github.com/Ashfaque-9x/register-app=
+-
 
 
   
