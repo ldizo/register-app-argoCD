@@ -576,7 +576,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
           -----------------------------------------------------------------------------------------
 
 pipeline {
-    agent { label 'Jenkins-Agent' } **the Agent or Jenkins-Agent VM Instance that was created and connected to the Master Node or Jenkins-Master is defined here**
+    agent { label 'Jenkins-Agent' } 
     tools {
         jdk 'Java17'
         maven 'Maven3'
