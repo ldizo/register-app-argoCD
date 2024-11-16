@@ -4,7 +4,7 @@ Such that, when a Developer makes any changes to the Application source code and
 When everything is automated, the Continuous Deployment (CD) Job still defined in Jenkins as the 2nd Job get trigerred immediately. It will first of all update the the Build Number (the Release Number) in the Deployment Yaml File within the 2nd GitHub Repository that is hosting all the Kubernetes Manifest Files. From that 2nd GitHub Repository, ArgoCD which is installed in the K8s cluster will automaticall pull the changes noticed in that 2nd Repo and it will automatically deploy the resources inside the EKS Cluster. 
 And once that CD Job is completed, it will send a notification on Slack to the entire team or it can send an email to team members concerned.
 
-**![Screenshot 2024-11-16 at 7 22 14 AM](https://github.com/user-attachments/assets/eeb092f8-9b09-46d2-b4ad-05d7a7066c6e)**
+**![Screenshot 2024-11-16 at 7 29 08 AM](https://github.com/user-attachments/assets/ec7a597a-8f85-4afa-88eb-cf85d9e47704)**
 
                                            -- [Implementation] --
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
