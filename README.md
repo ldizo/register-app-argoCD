@@ -6,7 +6,7 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 
 **![Screenshot 2024-11-12 at 9 35 34 PM](https://github.com/user-attachments/assets/5b413388-42ba-419a-9f86-603777520b95)**
 
-                                           -- Implementation --
+                                           -- [Implementation] --
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
 
   **(1) Install and configure the Jenkins-Master server and the Jenkins-Agent server**
@@ -576,7 +576,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
           -----------------------------------------------------------------------------------------
 
 pipeline {
-    agent { label 'Jenkins-Agent' } 
+    agent { label 'Jenkins-Agent' } **[the Agent or Jenkins-Agent VM Instance that was created and connected to the Master Node or Jenkins-Master is defined here]**
     tools {
         jdk 'Java17'
         maven 'Maven3'
