@@ -797,7 +797,7 @@ Now, move or come out from the root. so do **cd ~**
 
 **(8) Create the EKS Cluster**
 
-- To create this EKS Cluster, go to the Boostrap Server and set it up there.                         ***{Since we are creating or setting up the cluster inside this VM Instance}***
+- To create this EKS Cluster, go to the Boostrap Server and set it up there.   ***{Since we are creating or setting up the cluster inside this VM Instance}***
 - Go to the Terminal of this Server that appears as
   - **[root@EKS-Boostrap-Server]**
 - Here, pass this command to create a Virtual Cluster in there. So run this command
