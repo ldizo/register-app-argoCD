@@ -693,4 +693,46 @@ pipeline {
 
 -----------------------------------------------------------------------------------------------------------------------------
 
+**(7) Setup a Bootsrap Server for EKSctle and Setup Kubernetes using EKSctl**
+
+- Here, we are going to create an EKS Bootstrap Server. So, go to the Console and create an Instance
+  - Click on "Launch Instance"
+  - Name: **EKS-Bootstrap-Server**
+  - OS Image: **ubuntu**
+  - Architecture: **64-bit(x86)**
+  - Instance type: **t2-micro**
+  - Keypair: **Jenkins-vm-keypair**
+  - Now, click on "Launch Instance" ro create the Instance
+- Copy the Public IP and log into the instance to have this
+  **[ubuntu@ip-172-31-34-39:~$]**
+
+- Now, update the system. So do **sudo apt update**
+- Secondly, upgrade the system. So do **sudo apt upgrade**
+- Do you want to continue? **Y**
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
