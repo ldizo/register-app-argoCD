@@ -753,6 +753,12 @@ pipeline {
     - You will see something appear as "clientversion:builddata, compiler etc" that are installed in this server
     - Ignore that warning sign that says "The connection to the server localhost:8080 was refused. did you specify ...." Ignore it becuase we are not connected to any cluster.
 
+**MY ADDENDUM**
+**You will first of all set up "Cloud SDK" in your local Laptop" for GCP Setup (For AWS, You will need to setup AWS CLI in your Local)**
+**[You will need to install kubectl in Kubectl in your local or laptop, (so as to be able to interact with the cluster from your Local.** "Windows setup is different from mac setup"
+
+
+
 **Proceed to install EKSctl in this EKS-Boostrap-Server**
 - So, download the package in the "tmp" Folder. Run this command
   **curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp**
