@@ -704,13 +704,108 @@ pipeline {
   - Keypair: **Jenkins-vm-keypair**
   - Now, click on "Launch Instance" ro create the Instance
 - Copy the Public IP and log into the instance to have this
-  **[ubuntu@ip-172-31-34-39:~$]**
+  - **[ubuntu@ip-172-31-34-39:~$]**
 
 - Now, update the system. So do **sudo apt update**
 - Secondly, upgrade the system. So do **sudo apt upgrade**
 - Do you want to continue? **Y**
-- 
+- Now, open the Host File and rename it. so do **sudo vi /etc/hostname**
+  - Here, delete everything in the file and type "EKS-Boostrap-Server"
+  - Then Save and Quit **:wq!**
+- Procceed to reboot the system. So do **sudo init 6**
+- So you now have it appear as
+  - **[ubuntu@EKS-boostrap-Server:~$]**
 
+- Now, change to a root user. So do **sudo su**
+  - So you now have it appears as
+  - **[root@EKS-Boostrap-Server:~$]**
+
+**Install AWS CLI in this Server**
+- So, firstly, get to the root or home directory. So do **cd ~**
+- Now, check your present Working directory to ensure that you are on "root". So do **pwd**
+  - You should see it appear as **/root**
+- Now, download AWS cli using this command.
+  **curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"**
+- Install the unzip using this command
+  **apt install unzip**
+- Now, unzip the downloaded aws CLI
+  **unzip awscliv2.zip**
+- Now, run this command to actually install the AWS cli
+  **sudo ./aws/install**
+- Proceed to check and confirm that AWS CLI is installed and its running. So do
+  **/usr/local/bin/aws --version**
+  - You should now see the version  of AWS running in the system
+  - You can as well do **aws --version** to see thesame thing
+
+**Install kubectl in this Boostrap Server**
+- So, first of all downloadkubectl using this command.
+  **curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.27.1/2023-04-19/bin/linux/amd64/kubectl**
+- Now, do **ll** or **ls**
+ - You will see **awscliv2.zip** and kubectl there but its not having executable permissions. So we have to give it executable permissions. So
+ - Run this command to give kubectl executable permissions. So do
+   **chmod +x ./kubectl**
+- Now, do **ll** or **ls**
+  - You realize that "kubectl" has turn to "green colour". So it now have executable permissions.
+- Since our Executable files should be in a "/bin" Directory, we should move "kubectl" to the "/bin" Directory. So do
+  - **mv kubectl /bin**
+  - Now, check to confirm that its now installed. So do
+    - **kubectl version --output=yaml**
+    - You will see something appear as "clientversion:builddata, compiler etc" that are installed in this server
+    - Ignore that warning sign that says "The connection to the server localhost:8080 was refused. did you specify ...." Ignore it becuase we are not connected to any cluster.
+
+**Proceed to install EKSctl in this EKS-Boostrap-Server**
+- So, download the package in the "tmp" Folder. Run this command
+  **curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp**
+- Now, go to the tmp Folder. so
+  **cd /tmp**
+- Now, do **ll** or **ls**
+  - You will see that "eksctl" is in green. Its already having executable permissions here.
+- Now, move the eks file from the "tmp" Folder to the "/bin" Folder. This is because all executable files are present in this "/bin" Folder. So do
+ - **sudo mv /tmp/eksctl /bin**
+- Now, check the eksctl version running. So do **eksctl version**
+  - You should see the version thats running in there
+Now, move or come out from the root. so do **cd ~**
+
+**Now, create an IAM Role to assign to the EKS Bootstrap Server**
+- So, go to the Console and go to "IAM"
+- Click on "Role" and click on "Create role"
+- Click on "AWS Service"
+- Use Case
+  - Service or use case: **EC2**
+  - Check the box on "EC2"
+- Click on "Next"
+- Permissions policy
+  - Here, check the box on "AdministratorAccess"
+- Click now on "Next"
+- Role name: **eks_role**
+- Now, scroll down and click on "Create role".
+  - Now, the Role has been created
+
+- Procceed. So, go back to EC2 Instance of the EKS-Boostrap-Server and click to check the box beside this "EKS-Boostrap-Server"
+- Then click on "Action" at the top
+- Then you click on "Security"
+  - Click here on "Modify IAM Role"
+  - In the modify IAM Role page that pops up, Inside the box, use the drop down to select "eksctl-role" A role that we just created.
+  - Then click on "Update IAM role"
+
+**(8) Create the EKS Cluster**
+
+- To create this EKS Cluster, go to the Boostrap Server and set it up there.                         ***{Since we are creating or setting up the cluster inside this VM Instance}***
+- Go to the Terminal of this Server that appears as
+  - **[root@EKS-Boostrap-Server]**
+- Here, pass this command to create a Virtual Cluster in there. So run this command
+  # eksctl create cluster --name virtualtechbox-cluster \
+ - Pass the region here. ** --region ap-south-1 \ **
+ - Now, Pass the node-type. ** --node-type t2.small \ **
+ - Then proceed to give the Node Count. ** --nodes 3 \ **
+   - **The EKS cluster creation will take some time to be set up**
+   - Now, verify and confirm that nodes are up and running. So do **kubectl get nodes**
+      - You should see 3 Nodes which are ready inside this Cluster
+
+**(9) ArgoCD installation on the EKS Cluster and add EKS Cluster to Argo CD**
+
+# So the next task is Argo CD Installation and it Configuration
+- So, first of all
 
 
 
