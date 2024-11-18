@@ -6,10 +6,10 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 
 **![Screenshot 2024-11-16 at 7 29 08 AM](https://github.com/user-attachments/assets/ec7a597a-8f85-4afa-88eb-cf85d9e47704)**
 
-                                           -- [Implementation] --
+# [--- Implementation] ---
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
 
-  **(1) Install and configure the Jenkins-Master server and the Jenkins-Agent server**
+# (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server**
  
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
@@ -175,7 +175,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 ***cat authorized_keys***
 - you will see a "READONLY" public key content of the Agent first above it, then you see the public key content of the Master second directly below it
 
-**(2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node**
+# (2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node**
 
 - **So, copy the Public IP of the Jenkins-Master and take it to a Browser to open it with port 8080**
   - **172.31.0.62:8080**
@@ -243,7 +243,7 @@ Now the Jenkins-Agent has just been added to our Jenkins-Master
 - "**Running on Jenkins-Agent in /home/ubuntu/workspace/Test**"
 - You can now delete the **Test** job (so as not to confuse us)
   
-**(3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins**
+# (3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins**
 
 We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. So
 - Go to "**Manage Jenkins**"
@@ -274,7 +274,7 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
    - Version: "**jdk-17.0.5+8**" {This version, we shall use for jdk}
    - Then click on "Apply" and then click on "Save"
 
-(3.1) Proceed to add our Github Credentials to Jenkins {Use this approach if your GitHub Account is private}
+# (3.1) Proceed to add our Github Credentials to Jenkins {Use this approach if your GitHub Account is private}
 
 - So, go to the Jenkins DASHBOARD and click again on "**Manage Jenkins**"
 - Now, locate "SECURITY" and click on "**Credentials**"
@@ -313,7 +313,7 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
     - Click now on "Apply" and then you click on "Save"
     - Now go up and click on **Build now**  (No build trigger yet for now)
 
-**(4) Install and Configure Sonarqube**
+# (4) Install and Configure Sonarqube**
 
 - So, go to the console and create a Sonarqube VM Instance. So click on "Launch Instance"
   - Name: **Sonarqube**
@@ -484,7 +484,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
       - Secret:
       - Now, click on "Create" to create this Webhook
 
-  **(5) Integrate SonarQube with Jenkins**
+  # (5) Integrate SonarQube with Jenkins**
 
   So, in the SonarQube Dashboard or UI
   - Click on your Account icon or picture at the top right
@@ -568,7 +568,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
   - ID: **dockerhub**
   - Then click on "Create"
 
-**(6) Create a Pipeline Script (Jenkinsfile) for Build $ Test Artifacts and Create CI Job on Jenkins**
+# (6) Create a Pipeline Script (Jenkinsfile) for Build $ Test Artifacts and Create CI Job on Jenkins**
 
 - Now, go to your Github Account and click to get into that Repository that is hosting the Application Source Code. (which is register-app)
   - =github.com/Ashfaque-9x/register-app=
@@ -693,7 +693,7 @@ pipeline {
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-**(7) Setup a Bootsrap Server for EKSctle and Setup Kubernetes using EKSctl**
+# (7) Setup a Bootsrap Server for EKSctle and Setup Kubernetes using EKSctl**
 
 - Here, we are going to create an EKS Bootstrap Server. So, go to the Console and create an Instance
   - Click on "Launch Instance"
@@ -795,7 +795,7 @@ Now, move or come out from the root. so do **cd ~**
   - In the modify IAM Role page that pops up, Inside the box, use the drop down to select "eksctl-role" A role that we just created.
   - Then click on "Update IAM role"
 
-**(8) Create the EKS Cluster**
+# (8) Create the EKS Cluster**
 
 - To create this EKS Cluster, go to the Boostrap Server and set it up there.   ***{Since we are creating or setting up the cluster inside this VM Instance}***
 - Go to the Terminal of this Server that appears as
@@ -809,9 +809,9 @@ Now, move or come out from the root. so do **cd ~**
    - Now, verify and confirm that nodes are up and running. So do **kubectl get nodes**
       - You should see 3 Nodes which are ready inside this Cluster
 
-**(9) ArgoCD installation on the EKS Cluster and add EKS Cluster to Argo CD**
+# (9) ArgoCD installation on the EKS Cluster and add EKS Cluster to Argo CD**
 
-# So the next task is Argo CD Installation and it Configuration
+**So the next task is Argo CD Installation and it Configuration**
 - So, first of all
 
 
