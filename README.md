@@ -9,7 +9,7 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 # [--- Implementation] ---
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
 
-# (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server**
+# (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server
  
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
@@ -175,7 +175,7 @@ Our objective is to use the Jenkins Master-Client Architecture, so that we dont 
 ***cat authorized_keys***
 - you will see a "READONLY" public key content of the Agent first above it, then you see the public key content of the Master second directly below it
 
-# (2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node**
+# (2) Access the Jenkins-Master Server and configure Jenkins to integrate the Agent to the Master Node
 
 - **So, copy the Public IP of the Jenkins-Master and take it to a Browser to open it with port 8080**
   - **172.31.0.62:8080**
@@ -243,7 +243,7 @@ Now the Jenkins-Agent has just been added to our Jenkins-Master
 - "**Running on Jenkins-Agent in /home/ubuntu/workspace/Test**"
 - You can now delete the **Test** job (so as not to confuse us)
   
-# (3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins**
+# (3.0) Integrate Maven to Jenkins and Add GitHub Credentials to Jenkins
 
 We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. So
 - Go to "**Manage Jenkins**"
@@ -313,7 +313,7 @@ We shall start by configuring few plugins in Jenkins on this Jenkins DASHBOARD. 
     - Click now on "Apply" and then you click on "Save"
     - Now go up and click on **Build now**  (No build trigger yet for now)
 
-# (4) Install and Configure Sonarqube**
+# (4) Install and Configure Sonarqube
 
 - So, go to the console and create a Sonarqube VM Instance. So click on "Launch Instance"
   - Name: **Sonarqube**
@@ -484,7 +484,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
       - Secret:
       - Now, click on "Create" to create this Webhook
 
-  # (5) Integrate SonarQube with Jenkins**
+  # (5) Integrate SonarQube with Jenkins
 
   So, in the SonarQube Dashboard or UI
   - Click on your Account icon or picture at the top right
@@ -568,7 +568,7 @@ Now, actually start the SonarQube installation proper. So first of all download 
   - ID: **dockerhub**
   - Then click on "Create"
 
-# (6) Create a Pipeline Script (Jenkinsfile) for Build $ Test Artifacts and Create CI Job on Jenkins**
+# (6) Create a Pipeline Script (Jenkinsfile) for Build $ Test Artifacts and Create CI Job on Jenkins
 
 - Now, go to your Github Account and click to get into that Repository that is hosting the Application Source Code. (which is register-app)
   - =github.com/Ashfaque-9x/register-app=
@@ -693,7 +693,7 @@ pipeline {
 
 -----------------------------------------------------------------------------------------------------------------------------
 
-# (7) Setup a Bootsrap Server for EKSctle and Setup Kubernetes using EKSctl**
+# (7) Setup a Bootsrap Server for EKSctle and Setup Kubernetes using EKSctl
 
 - Here, we are going to create an EKS Bootstrap Server. So, go to the Console and create an Instance
   - Click on "Launch Instance"
@@ -795,7 +795,7 @@ Now, move or come out from the root. so do **cd ~**
   - In the modify IAM Role page that pops up, Inside the box, use the drop down to select "eksctl-role" A role that we just created.
   - Then click on "Update IAM role"
 
-# (8) Create the EKS Cluster**
+# (8) Create the EKS Cluster
 
 - To create this EKS Cluster, go to the Boostrap Server and set it up there.   ***{Since we are creating or setting up the cluster inside this VM Instance}***
 - Go to the Terminal of this Server that appears as
@@ -809,10 +809,65 @@ Now, move or come out from the root. so do **cd ~**
    - Now, verify and confirm that nodes are up and running. So do **kubectl get nodes**
       - You should see 3 Nodes which are ready inside this Cluster
 
-# (9) ArgoCD installation on the EKS Cluster and add EKS Cluster to Argo CD**
+# (9) ArgoCD installation on the EKS Cluster and add EKS Cluster to Argo CD
 
 **So the next task is Argo CD Installation and it Configuration**
-- So, first of all
+- So, first of all, on the Boostrap Server, terminal, where the cluster is running, we shall create a Namespace there for ArgoCD.
+- Thus, in this Terminal **root@EKS-Boostrap-Server:~$**
+  - Create a Namespace for ArgoCD. So do
+  - ***kubectl create namespace argocd***
+  - Now, in this namespace, apply the ArgoCD yaml configuration file. This is the command for that ArgoCD yaml file to get applied here in this Namespace. So pass this command
+  - ***kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml***   {Here, we used an auto-generated ArgoCD yaml file. Do not change anything on this file as it is autogenerated. Any change on it will make ArgoCD to fail}
+ 
+  - Now, we can check to see the Pods that are created in the ArgoCD Namespace by default. So do
+  - ***kubectl get pods -n argocd***  {These are the pods that are running inside ArgoCD BY DEFAULT, in our ArgoCD Namespace. "1 is still initializing"}
+  - Now, to interact with the API Server, we need to deploy the ArgoCD CLI first. So run this command to deploy the ArgoCD CLI.
+  - ***curl --silent --location -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.4.7/argocd-linux-amd64***
+  - Now, give ArgoCD the executable permissions. So do
+  - ***chmod +x /usr/local/bin/argocd***
+  - Now, we need to expose the ArgoCD Server to the External World by creating a LoadBalancer. So do
+  - ***kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'***   {It will take some time to get created in the background}
+  - Now, check to see if the LoadBalancer has been created. So do
+  - ***kubectl get svc -n argocd***  {You will see the LoadBalancer there with its IP and it External IP or URL that you can use to access it}.
+  - However, before Accessing the LoadBalancer, we need to extract the password for the ArgoCD. To get the Password for this ArgoCD, do
+  - ***kubectl get secret argocd-initial-admin-secret -n argocd -o yaml***   {it will generate a password which appears as **echo WXV-----==I base64 --decode**}
+    
+  - Now, we need to decode it. So, copy the password that is generated above after running the command and paste it here
+  - ***echo WXV-----==I base64 --decode*** Hit enter to decode the password
+  - The decoded password appears as follows
+  - ***Sd6eqrtGVK9TowKM***root@EKS-Boostrap-Server:~#   {Here is the decoded password in Bold}
+  - Now, copy the External IP or the long URL of the LoadBalancer and take it to a new Browser and hit enter
+  - On the page that pops up, click on "Advance"
+  - Then input the following requested information
+    - Username: **admin**
+    - Password: **Sd6eqrtGVK9TowKM**     {This is that decoded password. So go copy it above and paste here}
+    - Now, hit "enter"
+      - ArgoCD UI comes up
+     
+      - # ----------------ARGO CD UI---------------
+     
+      - Now, we have to sign or log into this Argo CD. To log into the Argo CD Cluster;
+      - Go and locate "User info" at the left and click on it
+      - Then click on "**UPDATE PASSWORD**
+      - On the "Update Account Password" page that pops up, input these information
+        - Current Password: ***Sd6eqrtGVK9TowKM**  {Paste the decoded password here}
+        - New Password: ***admin***   {type your own personal chosened password here}
+        - Confirm new Password: ***admin**    {Confirm your new password}
+     - Then click on "SAVE NEW PASSWORD"
+     - Now, click on "Log out" at the top right to log out
+     - Then Login with the new password. So input this information
+       - Username: ***admin***
+       - Password: ***admin***
+     - Click now on "Sign in"
+- Now, go back to the EKS-Boostrap-Server terminal
+- **root@EKS-Boostrap-Server:~$**
+
+# (10) Add the EKS Cluster to Argo CD.
+
+- First of all, we have to login to AgroCD from the CLI. So, in the terminal, run this command
+- ***argocd login***
+- 
+
 
 
 
