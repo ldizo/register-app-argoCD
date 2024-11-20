@@ -893,7 +893,26 @@ Now, move or come out from the root. so do **cd ~**
 
 # (11) Configure ArgoCD to Deploy pods on EKS and automate ArgoCD Deployment Job using GitOps GitHub Repository.
 
-- **Requirements:** 
+- **Requirements:**
+  - (i) Have another GitHub Repository known as **github.com/Asfaque-9x/gitops-register-app**   {which is having Those Manifest Files for Kubernetes. Note: This Repository is in GitHub}
+  - (ii) Then we shall need to connect this 2nd Repository which is **github.com/Asfaque-9x/gitops-register-app** hosting our Manifest Files to ArgoCD Cluster
+
+-Now, we are going to connect our ArgoCD to the 2nd GitHub Repository
+- So, Go to ArgoCD DASHBOARD and click on "Settings" at the left so as to connect the repository.
+- Then click on "Repositories"
+- Then click on "+ Connect Repo"
+- Then locate "**VIA SSH**" and click on the drop down below it.
+  - Then you select "VIA HTTPS"
+  - Type: **git**
+  - Project: **default**
+  - Repository URL: **<Paste that 2nd GitHub Repo URL here>** {which is **https://github.com/Asfaque-9x/gitops-register-app** }
+  - Username: **Paste your GitHub Account Username here** {Ashfague-9x}
+  - Password: **Paste the Personal Access Token for that your GitHub Account here**
+  - Then you click on "Connect"
+  - Now, our 2nd Repository has been added to ArgoCD DASHBOARD
+  - This Repository {**gitops-register-app**} have its URL as **https://github.com/Asfaque-9x/gitops-register-app** have our Manifest Files which are the "deployment.yaml" and the "service.yaml"}
+
+Now, we have to deploy the Application in the EKS Cluster through Argo CD
 
 
 
