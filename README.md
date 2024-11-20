@@ -989,6 +989,32 @@ spec:
 
 - To automate this Deployment process,
 - Go to the Jenkins DASHBOARD and there we shall create a Continuous Deployment (CD) Job there. So
+- In the Jenkins DASHBOARD, click on "+ New Item"
+  - Item Name: **gitOps-register-app-cd**
+  - Click on "Pipeline"
+  - Then click on "O.K"
+  - Under "General",
+    - Check the box on **Discard old builds**
+  - Max number of builds to keep: **2**
+    - This project is Parameterized
+    - Click now on "**Add Parameter**"
+    - Then click on "**String Parameter**"
+    - Name: **IMAGE_TAG**        {Because our deployment will always change the image tag in the GitOps Repository}
+    - Build Triggers
+    - Check the box on **Trigger builds remotely (e.g from Script)**
+    - Authentication Token: Name it as **gitops-token**
+    - Pipeline:
+    - Definition: Select: **Pipeline script from SCM**
+    - SCM: **Git**
+    - Repositories:
+    - Repository url: **https://github.com/Asfaque-9x/gitops-register-app**  {Paste the URL of the 2nd GitHub Repo here that is hosting those Manifest Files}
+    - Credentials: **Ashfague-9x/***(github)
+    - Branch Specifier: ***/main**
+    - Check the box on **Lightweight**
+    - Then click on "Apply" and click on "Save"
+    - Now, the triggered CD Pipeline stage need to be added in the Jenkinsfile of the Application source code Repo and save it by commiting the changes (if only you did not add that last stage or trigger the CD Stage).
+
+# (13) Create a Jenkinsfile in the GitOps Repository
 
 
 
