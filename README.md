@@ -972,6 +972,25 @@ spec:
     - Now, click on **create**
 - The Application has been deployed in the EKS Cluster. So the Deployment is happening perfectly as seen in the ArgoCD DASHBOARD
 
+<img width="1431" alt="Screenshot 2024-11-20 at 5 37 56 PM" src="https://github.com/user-attachments/assets/2fa4c307-277f-4800-b544-f7c9afc4bedd">
+
+- The Deployment is also happening perfectly in our EKS Cluster throught the Argo CD. So if we go to our Boostrap-Server terminal and do ***kubectl get pods***
+- you will see 2 pods running inside the default Namespace of our EKS Cluster.
+- To get the External DNS Name of this Application, do ***kubectl get svc***   {You will see the EXTERNAL-IP of the Loadbalancer appears in the default Namespace through the Service Manifest File
+- Now, copy this entire EXTERNAL-IP of this LoadBalancer and put in a new Browser:8080
+- # Application UI of Tomcat Appears
+
+- And if we paste the EXTERNAL-IP:8080/webapp/ "enter"
+- # New User Registration for DevOps Learning pops up
+  {This is our Application}
+- Now, we need to automate this deployment process.
+
+# (12) Automating the Deployment Process
+
+- To automate this Deployment process,
+- Go to the Jenkins DASHBOARD and there we shall create a Continuous Deployment (CD) Job there. So
+
+
 
 
 
