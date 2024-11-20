@@ -911,6 +911,47 @@ Now, move or come out from the root. so do **cd ~**
   - Then you click on "Connect"
   - Now, our 2nd Repository has been added to ArgoCD DASHBOARD
   - This Repository {**gitops-register-app**} have its URL as **https://github.com/Asfaque-9x/gitops-register-app** have our Manifest Files which are the "deployment.yaml" and the "service.yaml"}
+  - **deployment.yaml**
+    - apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: register-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: register-app
+  template:
+    metadata:
+      labels:
+        app: register-app
+    spec:
+      containers:
+        - name: register-app
+          image: ashfaque9x/register-app-pipeline:1.0.0-9
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+              
+- **Service.yaml**
+  -apiVersion: v1
+kind: Service
+metadata:
+  name: register-app-service
+  labels:
+    app: register-app 
+spec:
+  selector:
+    app: register-app
+
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+  type: LoadBalancer
 
 Now, we have to deploy the Application in the EKS Cluster through Argo CD
 
