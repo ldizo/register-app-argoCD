@@ -865,8 +865,35 @@ Now, move or come out from the root. so do **cd ~**
 # (10) Add the EKS Cluster to Argo CD.
 
 - First of all, we have to login to AgroCD from the CLI. So, in the terminal, run this command
-- ***argocd login***
-- 
+- ***argocd login <Paste the LoadBalancer URL here> --username admin***
+- {So the whole command will look like this ***argocd login a2255bb2bb33f438d9addf8840d294c5-785887595.ap-south-1.elb.amazonaws.com --username admin*** }
+- It says "Warning server certificate had error. Certificate is valid for Localhost". Reply (Y/N)?:
+- Type: **Y**
+- Password: **admin** {Provide the Password of your ArgoCD Account}
+- Login Successful {So we have succesfully login to ArgoCD Cluster using the CLI}
+
+- Now, if you go to Argo CD Dashboard and click on "**Settings** at the left,
+- Then you click on "Cluster"
+  - You will see only 1 Cluster (which is the default Cluster of ArgoCD)
+
+- Now, come back to the Boostrap-Server and list the Cluster. You will see only that same default ArgoCD Cluster.
+- To see that, do ***argocd cluster list***  {You will see the default Cluster here as well
+
+- Now, we need to extract the name of our EKS Cluster. To see the details of our EKS Cluster, do
+- ***kubectl config get-contexts***   {Its shows you the CURRENT NAME: **i-03b9doffo409f48e7@virtualtechbox-cluster.ap-south-1.eksctl.io**. NAMESPACE: **Vitualtechbox-cluster.app-south**. CLUSTER:  }
+- Now, we need to add this our EKS Cluster to ArgoCD. For that to be added, run this command
+- ***argocd cluster <paste the CURRENT NAME of our cluster here> --name <Pass the name of our cluster that we are giving here>***
+- So the whole command will appear like this ***argocd cluster add i-08b9d0ff0409f48e7@virtualtechbox-cluster.ap-south-1.eksctl.io --name virtualtechbox-eks-cluster***
+- It says "Warning. This will create a Service Account". Do you want to continue [Y/N]?
+- Type: **Y**
+- It will actually create a Service Account for ArgoCD Manager. Then it also create a Role Binding
+- Now, list the Cluster to check and confirm that our EKS Cluster is now available in ArgoCD. So do
+- ***argocd cluster list***   {You will see both the default cluster and our cluster that we have just created}
+- Now, go to the ArgoCD DASHBOARD and refresh. {You will now see 2 Clusters there. The default Cluster and our own Ckuster}
+
+# (11) Configure ArgoCD to Deploy pods on EKS and automate ArgoCD Deployment Job using GitOps GitHub Repository.
+
+- **Requirements:** 
 
 
 
