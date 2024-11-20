@@ -953,9 +953,24 @@ spec:
 
   type: LoadBalancer
 
-Now, we have to deploy the Application in the EKS Cluster through Argo CD
-
-
+# Now, we have to deploy the Application in the EKS Cluster through Argo CD
+- So, to deploy the Application in the EKS Cluster through ArgoCd, go to the ArgoCD DASHBOARD.
+- Under "Applications"
+  - Click at the top on "NEW APP"
+  - Application Name: **register-app***
+  - Project Name: **default**
+  - SYNC POLICY: Automatic
+  - Check the box on **PRUNE RESOURCES**
+  - Check the box on **SELF HEAL**
+  - Source:
+    - Repository: **https://github.com/Asfaque-9x/gitops-register-app** {Paste the URL of the 2nd Repo here. This Repository contains the Manifest Files for K8s Application}
+    - Revision: **HEAD**
+    - Path: **./**
+  - Destination:
+    - Cluster URL: {Select your cluster URL in the drop down using the drop down menure} it appears something like **https://FoBB3378900D8FoBec---ap-south-1.eks.amazon.aws.com**
+    - Namespace: **default**  {It will deloy the resource in our kubernetes cluster in the default Namespace}
+    - Now, click on **create**
+- The Application has been deployed in the EKS Cluster. So the Deployment is happening perfectly as seen in the ArgoCD DASHBOARD
 
 
 
