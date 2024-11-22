@@ -1065,9 +1065,18 @@ spec:
     }
 }
 
+- **DONE**
 
+- # -----Testing-------
 
+  # (14) Verify the CI/CD Pipeline by doing a test commit on the GitHub Repository (from the Application Source Code Repository**
 
+- Everything has now been set up. Now, verify our CI/CD Pipeline. But before we verify the CI/CD Pipeline, we should set the trigger in our CI Job, so that it will trigger the entire Pipeline once any change is made that lands on our Application Source Code GitHub Repository. To set up such Trigger;
+- Go to the Jenkins DASHBOARD and locate and click on our "**register-app-ci**" job
+- Then click on "Configure" at the left
+- Under "**Build Triggers",
+- locate and check the box on "**Poll SCM**"
+- In the box under "**Schedule**", put 5 stars there to appear as "*********" {These stars means that "every minutes", which means that, every minutes, it will monitor this Repository. And any change, it will trigger the Build Job
 
 
 
