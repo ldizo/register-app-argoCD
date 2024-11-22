@@ -1015,6 +1015,56 @@ spec:
     - Now, the triggered CD Pipeline stage need to be added in the Jenkinsfile of the Application source code Repo and save it by commiting the changes (if only you did not add that last stage or trigger the CD Stage).
 
 # (13) Create a Jenkinsfile in the GitOps Repository
+- The next thing to do is to create a Jenkinsfile in our gitOps Repository. This is because our CD Job has been configured with that Repository. And that Repository must have a Jenkinsfile as our CD Job has been configured as a Declarative Job which will to pull the Jenkinsfile from the GitOps Repository to deploy it in the EKS Cluster via ArgoCD. For that;
+- Go to the GitOps Repository which has those Manifest Files for K8s and click on "Add File"
+- Then click on "Create new file" in this Repository in the main Branch
+- Name: **Jenkinsfile**
+- pipeline {
+    agent { label "Jenkins-Agent" }
+    environment {
+              APP_NAME = "register-app-pipeline"
+    }
+
+    stages {
+        stage("Cleanup Workspace") {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage("Checkout from SCM") {
+               steps {
+                   git branch: 'main', credentialsId: 'github', url: 'https://github.com/Ashfaque-9x/gitops-register-app'
+               }
+        }
+
+        stage("Update the Deployment Tags") {
+            steps {
+                sh """
+                   cat deployment.yaml
+                   sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml
+                   cat deployment.yaml
+                """
+            }
+        }
+
+        stage("Push the changed deployment file to Git") {
+            steps {
+                sh """
+                   git config --global user.name "Ashfaque-9x"
+                   git config --global user.email "ashfaque.s510@gmail.com"
+                   git add deployment.yaml
+                   git commit -m "Updated Deployment Manifest"
+                """
+                withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                  sh "git push https://github.com/Ashfaque-9x/gitops-register-app main"
+                }
+            }
+        }
+      
+    }
+}
+
 
 
 
