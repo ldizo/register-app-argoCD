@@ -1076,7 +1076,17 @@ spec:
 - Then click on "Configure" at the left
 - Under "**Build Triggers",
 - locate and check the box on "**Poll SCM**"
-- In the box under "**Schedule**", put 5 stars there to appear as "*********" {These stars means that "every minutes", which means that, every minutes, it will monitor this Repository. And any change, it will trigger the Build Job
+- In the box under "**Schedule**", put 5 stars there to appear as "*****" {These stars means that "every minutes", which means that, every minutes, it will monitor this Repository. And any change, it will trigger the Build Job.
+- Pipeline:
+  - Definition: **Pipeline script from scm**
+  - SCM: **Git**
+- Repositories:
+  - Repository URL: **https://github.com/Asfaque-9x/register-app**  {This is the URL of the Application Source Code Repository or that of 1st Repo}
+  - Credentials: Ashfague-9x/****(github)
+- Branches to build
+  - Branch specifier: ***/main**
+  - Now, click on "Apply" and then click on "Save"
+- Now, we have opened the CI Job and the CD Job on a 2 different tabs, so as to see clearly how the CI Job will be triggered or react when a trigger takes effect, and also to see how a CD Job will reat simultaneousely when the triggers happens.
 
 
 
