@@ -1088,6 +1088,87 @@ spec:
   - Now, click on "Apply" and then click on "Save"
 - Now, we have opened the CI Job and the CD Job on a 2 different tabs, so as to see clearly how the CI Job will be triggered or react when a trigger takes effect, and also to see how a CD Job will reat simultaneousely when the triggers happens.
 
+# (i) ------------ First Test --------------
+
+- Now, use your local terminal and connect or cd into the Application Source Code remote Repository and **ensure that you are in the "main Branch" of that Repository that is hosting the Source Code**
+- { That Branch should have the **src** folder, the **pom.xml** File, and the **Jenkinsfile** all together in that Repository.}
+- Now, inject another File called **index.jsp** file. So, inside that Directory, do
+  - ***vi index.jsp***
+  - Paste this content in there at the tail end
+  - **<h1> Happy Learning. </h1>
+  - Now, save and quite ***:wq!***
+
+- Now, commit it to the remote Repository. So do
+  - ***git add .***
+  - ***git commit -m "changed the index file"***
+  - ***git push origin main***
+
+- **As soon as the changes get pushed to the Application Source Code Repository, Our Jenkins CI Job get triggered automatically, and the CI Build job starts immediately. (See the Jenkins CI Job Dashboard)**
+  - **NOW, THE C.I JOB HAS BEEN COMPLETED SUCCESFULLY** --
+
+- Lets now proceed to the CD Jenkins Job Dasboard.
+- **As soon as the CI Job gets completed, it also triggers the CI Job automatically and its own Build too get started immediately. (Go to the other tab of the CD jENKINS job and see it as its happening**
+
+- --------- **Now, go to DockerHub and Refresh** -------------------
+- You will see that, the image "**ashfague9x/register-app-pipeline**" has just been pushed there.
+- Click on that image name. You will see that it has a "**Latest**" Tag which is **1.0.0-8** (Note the "**8** here as it is the latest Build # which is showing on the Build Jenkins DASHBOARD beside the build.
+- The previous one is **1.0.0-7**
+
+- ---------- **Now, go to the gitOps Repository and Refresh as well** ----------------------
+- Click on the "**deployment.yaml**" File
+- You will see that the image in this yaml Manifest File has been automatically updated to the latest tag with "**8**" at the end
+
+- ---------- **Now, go to Argo CD DASHBOARD and Refresh as well** --------------------------
+- Then in the box or page, click on the name "**vitualtechbox-eks-cluster**"
+- Destination: **virtualtechbox-eks-cluster**               {click on this name, - which is the app}
+- Then click above on "APP DETAILS"
+- Scroll down to image. You will see the image there carrying **1.0.0-8**
+- So the App is using the "Latest Release", which is the **"8"** Release.
+
+- ----------- **Now, click on the Pod** ---------------
+- You will see also that the Pod there has been automatically updated to the latest Release ("Which is **8**")
+
+-  ---------- **Now, go to the Application Brouser and Refresh as well** ---------------------
+-  You will see that
+-  "**Happy Learning**" comes up as the latest changes by the Latest Release.
+  
+# (ii) ------------ Second Test --------------
+- We want to test it again one more time. So
+- Still go to the Terminal or Local terminal of the Application Source Code and
+- Open again  the **index.jsp** file
+- Then under it, add this there
+- **<h1> Happy Learning. See You Again. </h1>**
+- Now, save the File and quite ***:wq!***
+
+- Now, commit it to the remote Repository. So do
+  - ***git add .***
+  - ***git commit -m "Display message changed on the main page"***
+  - ***git push origin main***
+
+- --------------------- **Now, go to the CI Job of the Jenkins DASHBOARD tap and Refresh** -------------------------
+- You will see that the **Build #9** has been automatically triggered and it goes into effect immediately upon the push to the Git Repository.
+- CI Job completed succesfully
+- Now, go to the CD part
+
+- -------------------- **Now, go to the CD Job of the Jenkins DASHBOARD tap and refresh** ------------------------
+- You will also see that it has been automatically triggered, upon the trigger of the CI Job.
+- And its own Build has automatically started as well.
+- CD Job also completed Succesfully
+
+-  ------------------ **Now, go to DockerHub and Refresh again** ------------------------------------------------
+-  You will see the image that has just been pushed there. Click on that image
+-  You will see that the "TAG **1.0.0-9** has been added
+
+-  ------------------ **Now, go to ArgoCD DASHBOARD again and Refresh** ------------------------------------------
+- Now, in the box or page, click on the name "**vitualtechbox-eks-cluster**"
+- Destination: **virtualtechbox-eks-cluster**               {click on this name, - which is the app}
+- Then click above on "APP DETAILS"
+- Scroll down to 'IMAGES'. You will see that, the latest image there has been automatically  updated carrying **1.0.0-9**
+- So the App is using the "Latest Release", now which is the **"9"** Release.
+
+- -------------------- **Now, click on Pod** ----------------------------------
+- You will see the changes appear there as well as
+- **Happy Learning. See You Again**
 
 
 
