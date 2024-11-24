@@ -1170,8 +1170,18 @@ spec:
 - You will see the changes appear there as well as
 - **Happy Learning. See You Again**
 
+- So, by this way, you can set up a Declarative Pipeline using **Jenkins**, **Docker**, **ArgoCD**, and **EKS**. Any change on that drops on the GitHub Application Repository, it will atomatically trigger the C.I Job in Jenkins. And once the CI Job is completed, CD Job will be automatically triggered. And upon completion of the CD Job, we will have the changes applied to our Application at all levels (i.e in DockerHub, GitOps Manifest Files in ArgoCD and right down to the pod and to the Application at the tail end.
 
+# --------- Challenges faced ----------
+# --------- Challenge Number (1) --------
+- The major challenge I faced running this Pipeline was at the level of generating the ArgoCD intial Token which comes with base 64 encoded. The right way is to first generate the token using imperative way, Then you proceed to decode it as it comes in an encoded form (base 64 encoded), which then permit us to use the decoded password and the ArgoCD user to bring up the ArgoCD UI.
+- If you dont follow this approach in order to extract that token, before procceeeding to decode it to use it, it will consistently fail.
+- Bringing up the ArgoCD UI involves a 2 steps setup which needs the decoded token in all of those steps to be able to to gain Access to the ArgoCD Succesfully.
+  - (1) At the first level, the decoded token is used to access the ArgoCD UI             and
+  - (2) At the second level, the decoded token is used to usher you in as a user into your own ArgoCD Environment which is running within the Cluster.
 
+# ---------- Challenge Number (2) -----------
+- The defualt IAM Role that comes with the Cluster is insufficient to make the Cluster to interact well with Argo CD and other services, especially when it comes to microservice Application that has multiple components. So without an additional IAM Role with full permission attached to the Cluster will limit the eks environment to interact with other services. So and additional IAM Role is created and attached to the cluster before things really work well
 
 
 
