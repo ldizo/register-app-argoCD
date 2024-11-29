@@ -15,7 +15,7 @@ Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
   - Name: **Jenkins-master**
   - OS image: **Ubuntu**
-  - Amazon Machine Image (AMI): **'Ubuntu server 22.04 LTS'**
+  - Amazon Machine Image (AMI): **Ubuntu server 22.04 LTS**  `Your GitHub Account`
   - Architecture: **64-bit(x86)**
   - Keypair
     - click on "create new keypair"
