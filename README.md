@@ -50,20 +50,20 @@ Create a Jenkins Master Server in the Console. so
 - Then click on "create" to create the Firewall Rule
 
 - Proceed to install Java on this Jenkins VM. Use this command to install java.
-***sudo apt install openjdk-17-jre***
+***`sudo apt install openjdk-17-jre`***
 - Now, check to confirm that Java is succesfully installed.
-***java -version***
+***`java -version`***
   
 - It should show you the version of openjdk thats running in the system
   
 - Now, proceed to install Jenkins. You can go to the Jenkins Documentation page for Ubuntu/Debian and copy the code under "Weekly release"
-  ***sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  ***`sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian/jenkins.io-2023.key
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
-sudo apt-get install jenkins***
+sudo apt-get install jenkins`***
 
 - now, Enable the Jenkins service to start at boot.
 ***sudo systemctl enable jenkins***
