@@ -9,7 +9,7 @@ And once that CD Job is completed, it will send a notification on Slack to the e
 # [--- Implementation] ---
 We shall use the Jenkins Master-Client Architecture, so that the main Jenkins server will not be overloaded.
 
-# (1) Install and configure the Jenkins-Master server and the Jenkins-Agent server
+# (1) _Install and configure the Jenkins-Master server and the Jenkins-Agent server_
  
 Create a Jenkins Master Server in the Console. so
 - Locate and click on "Launch Instance"
