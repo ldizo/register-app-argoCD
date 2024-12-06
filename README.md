@@ -31,7 +31,7 @@ Create a Jenkins Master Server in the Console. so
 - Now, first of all update the system.
 ***sudo apt update***
 - Then, proceed to upgrade the system.
-***sudoapt upgrade***
+***sudo apt upgrade***
 - Open and rename the Hostname here.
 ***`vi /etc/hostname`***
 - Now, Erase everything in there and type this
